@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yoo Watch's Store</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:#f5f5f5;
+    color:#222;
+}
+
+header{
+    background:#111;
+    color:white;
+    padding:20px 8%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    position:sticky;
+    top:0;
+    z-index:1000;
+}
+
+.logo{
+    font-size:32px;
+    font-weight:700;
+    color:#d4af37;
+}
+
+nav a{
+    text-decoration:none;
+    color:white;
+    margin-left:25px;
+    transition:0.3s;
+}
+
+nav a:hover{
+    color:#d4af37;
+}
+
+.hero{
+    min-height:90vh;
+    background:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url('https://images.unsplash.com/photo-1523170335258-f5ed11844a49?q=80&w=1600&auto=format&fit=crop') center/cover no-repeat;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    color:white;
+    padding:20px;
+}
+
+.hero-content h1{
+    font-size:65px;
+    margin-bottom:20px;
+}
+
+.hero-content p{
+    max-width:750px;
+    margin:auto;
+    line-height:1.8;
+    font-size:20px;
+}
+
+.btn{
+    margin-top:30px;
+    padding:15px 35px;
+    border:none;
+    border-radius:40px;
+    background:#d4af37;
+    color:black;
+    font-weight:600;
+    font-size:17px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.btn:hover{
+    background:white;
+    transform:translateY(-3px);
+}
+
+section{
+    padding:90px 8%;
+}
+
+.section-title{
+    text-align:center;
+    margin-bottom:50px;
+}
+
+.section-title h2{
+    font-size:45px;
+    color:#111;
+}
+
+.products{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:30px;
+}
+
+.product-card{
+    background:white;
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 8px 20px rgba(0,0,0,0.1);
+    transition:0.3s;
+}
+
+.product-card:hover{
+    transform:translateY(-8px);
+}
+
+.product-card img{
+    width:100%;
+    height:280px;
+    object-fit:cover;
+}
+
+.product-info{
+    padding:20px;
+}
+
+.product-info h3{
+    margin-bottom:10px;
+}
+
+.price{
+    color:#d4af37;
+    font-size:24px;
+    font-weight:700;
+    margin-bottom:15px;
+}
+
+.product-info button{
+    width:100%;
+    padding:12px;
+    border:none;
+    background:#111;
+    color:white;
+    border-radius:10px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.product-info button:hover{
+    background:#d4af37;
+    color:black;
+}
+
+.cart-section{
+    background:#111;
+    color:white;
+    border-radius:20px;
+    padding:40px;
+}
+
+.cart-item{
+    display:flex;
+    justify-content:space-between;
+    padding:15px 0;
+    border-bottom:1px solid #444;
+}
+
+.total{
+    margin-top:25px;
+    font-size:28px;
+    color:#d4af37;
+}
+
+.checkout-btn{
+    margin-top:20px;
+    background:#d4af37;
+    color:black;
+}
+
+.about{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:50px;
+    align-items:center;
+}
+
+.about img{
+    width:100%;
+    border-radius:20px;
+}
+
+.about-text h3{
+    font-size:38px;
+    margin-bottom:20px;
+}
+
+.about-text p{
+    line-height:1.8;
+    color:#555;
+}
+
+.contact-form{
+    max-width:700px;
+    margin:auto;
+    background:white;
+    padding:40px;
+    border-radius:20px;
+    box-shadow:0 8px 20px rgba(0,0,0,0.1);
+}
+
+.contact-form input,
+.contact-form textarea{
+    width:100%;
+    padding:15px;
+    margin-bottom:20px;
+    border:1px solid #ccc;
+    border-radius:10px;
+}
+
+.contact-form textarea{
+    resize:none;
+    height:140px;
+}
+
+footer{
+    background:#111;
+    color:white;
+    text-align:center;
+    padding:25px;
+}
+
+#cartCount{
+    background:#d4af37;
+    color:black;
+    padding:4px 10px;
+    border-radius:50%;
+    margin-left:5px;
+}
+
+@media(max-width:768px){
+    .hero-content h1{
+        font-size:42px;
+    }
+
+    header{
+        flex-direction:column;
+    }
+
+    nav{
+        margin-top:15px;
+    }
+}
+</style>
+</head>
+<body>
+
+<header>
+    <div class="logo">Yoo Watch's Store</div>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#products">Watches</a>
+        <a href="#cart">Cart <span id="cartCount">0</span></a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+    </nav>
+</header>
+
+<section class="hero" id="home">
+    <div class="hero-content">
+        <h1>Luxury Watches Collection</h1>
+        <p>
+            Discover premium luxury watches crafted with elegance, precision,
+            and timeless style. Explore the finest collection at Yoo Watch's Store.
+        </p>
+
+        <button class="btn" onclick="scrollToProducts()">Shop Now</button>
+    </div>
+</section>
+
+<section id="products">
+    <div class="section-title">
+        <h2>Featured Watches</h2>
+    </div>
+
+    <div class="products">
+
+        <div class="product-card">
+            <img src="https://images.unsplash.com/photo-1547996160-81dfa63595aa?q=80&w=1200&auto=format&fit=crop" alt="Watch">
+            <div class="product-info">
+                <h3>Rolex Classic</h3>
+                <div class="price">$599</div>
+                <button onclick="addToCart('Rolex Classic',599)">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <img src="https://images.unsplash.com/photo-1524592094714-0f0654e20314?q=80&w=1200&auto=format&fit=crop" alt="Watch">
+            <div class="product-info">
+                <h3>Omega Luxury</h3>
+                <div class="price">$749</div>
+                <button onclick="addToCart('Omega Luxury',749)">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <img src="https://images.unsplash.com/photo-1434056886845-dac89ffe9b56?q=80&w=1200&auto=format&fit=crop" alt="Watch">
+            <div class="product-info">
+                <h3>Fossil Modern</h3>
+                <div class="price">$299</div>
+                <button onclick="addToCart('Fossil Modern',299)">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=1200&auto=format&fit=crop" alt="Watch">
+            <div class="product-info">
+                <h3>Apple Smart Watch</h3>
+                <div class="price">$499</div>
+                <button onclick="addToCart('Apple Smart Watch',499)">Add to Cart</button>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<section id="cart">
+    <div class="section-title">
+        <h2>Your Shopping Cart</h2>
+    </div>
+
+    <div class="cart-section">
+        <div id="cartItems"></div>
+
+        <div class="total">
+            Total: $<span id="totalPrice">0</span>
+        </div>
+
+        <button class="btn checkout-btn" onclick="checkout()">Proceed to Checkout</button>
+    </div>
+</section>
+
+<section id="about">
+    <div class="section-title">
+        <h2>About Our Store</h2>
+    </div>
+
+    <div class="about">
+        <img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=1200&auto=format&fit=crop" alt="Store">
+
+        <div class="about-text">
+            <h3>Timeless Elegance & Luxury</h3>
+            <p>
+                Yoo Watch's Store offers world-class luxury watches designed for style,
+                precision, and performance. Our collection includes premium brands,
+                smart watches, and modern fashion accessories trusted by customers worldwide.
+            </p>
+        </div>
+    </div>
+</section>
+
+<section id="contact">
+    <div class="section-title">
+        <h2>Contact Us</h2>
+    </div>
+
+    <div class="contact-form">
+        <input type="text" id="name" placeholder="Your Name">
+        <input type="email" id="email" placeholder="Your Email">
+        <textarea id="message" placeholder="Your Message"></textarea>
+        <button class="btn" onclick="sendMessage()">Send Message</button>
+    </div>
+</section>
+
+<footer>
+    <p>© 2026 Yoo Watch's Store | All Rights Reserved</p>
+</footer>
+
+<script>
+let cart=[];
+let total=0;
+
+function scrollToProducts(){
+    document.getElementById('products').scrollIntoView({
+        behavior:'smooth'
+    });
+}
+
+function addToCart(name,price){
+    cart.push({name,price});
+    total+=price;
+
+    updateCart();
+
+    alert(name + ' added to cart!');
+}
+
+function updateCart(){
+    const cartItems=document.getElementById('cartItems');
+    const totalPrice=document.getElementById('totalPrice');
+    const cartCount=document.getElementById('cartCount');
+
+    cartItems.innerHTML='';
+
+    cart.forEach((item,index)=>{
+        const div=document.createElement('div');
+        div.classList.add('cart-item');
+
+        div.innerHTML=`
+            <span>${item.name}</span>
+            <span>$${item.price}</span>
+            <button onclick="removeItem(${index})" style="padding:8px 15px;border:none;border-radius:8px;background:red;color:white;cursor:pointer;">Remove</button>
+        `;
+
+        cartItems.appendChild(div);
+    });
+
+    totalPrice.innerText=total;
+    cartCount.innerText=cart.length;
+}
+
+function removeItem(index){
+    total-=cart[index].price;
+    cart.splice(index,1);
+
+    updateCart();
+}
+
+function checkout(){
+    if(cart.length===0){
+        alert('Your cart is empty');
+        return;
+    }
+
+    alert('Order placed successfully!');
+
+    cart=[];
+    total=0;
+
+    updateCart();
+}
+
+function sendMessage(){
+    const name=document.getElementById('name').value;
+    const email=document.getElementById('email').value;
+    const message=document.getElementById('message').value;
+
+    if(name==='' || email==='' || message===''){
+        alert('Please fill all fields');
+        return;
+    }
+
+    alert('Thank you '+name+'! Your message has been sent.');
+
+    document.getElementById('name').value='';
+    document.getElementById('email').value='';
+    document.getElementById('message').value='';
+}
+</script>
+
+</body>
+</html>
